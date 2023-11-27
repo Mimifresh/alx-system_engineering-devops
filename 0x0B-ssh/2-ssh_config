@@ -1,0 +1,4 @@
+#ssh configurating
+Host 35.153.226.233
+IdentityFile ~/.ssh.school
+PasswordAuthentication no
