@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#created a redirection page
+redirect_perm="\\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;"
+sudo apt-get update
+sudo apt-get install -y nginx
+echo "Hello World!" | sudo tee /var/www/html/index.html
+sudo -i "47i $redirect_perm" /etc/nginx/sites-enabled/default
+sudo service nginx start
