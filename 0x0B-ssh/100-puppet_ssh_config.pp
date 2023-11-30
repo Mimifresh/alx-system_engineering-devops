@@ -1,5 +1,13 @@
 #configure ssh using puppet
-file { '~/.ssh/school':
-  Host                   => '35.153.226.233',
-  PasswordAuthentication => 'no',
+# make changes to our configuration file
+file_line { 'refuse password':
+  path    => '/etc/ssh/ssh_config',
+  line    => 'PasswordAuthentication no',
+  replace => true
+}
+
+file_line { 'identity file':
+  path    => '/etc/ssh/ssh_config',
+  line    => 'IdentityFile ~/.ssh/school',
+  replace => true
 }
