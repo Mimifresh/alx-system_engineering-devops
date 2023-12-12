@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+#install haproxy
+
+sudo apt-get -y update
+sudo apt-get install -y haproxy
+
+sudo echo "ENABLED=1" >> sudo /etc/default/haproxy
+
+sudo echo "
+frontend airbnb
+	bind *:80
+	option forwardfor
+	default_backend myservers
+
+backend myservers
+	balance roundrobin
+	server 397593-web-01 35.153.226.233 check port 80
+	server 397593-web-02 34.207.64.221 check port 80
+	option httpchk
+	option httpclose
+" >> sudo /etc/haproxy/haproxy.cfg
+
+sudo service haproxy start
