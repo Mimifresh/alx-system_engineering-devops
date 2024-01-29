@@ -9,15 +9,13 @@ sudo echo "ENABLED=1" >> sudo /etc/default/haproxy
 sudo echo "
 frontend airbnb
 	bind *:80
-	option forwardfor
+    mode http
 	default_backend myservers
 
 backend myservers
 	balance roundrobin
-	server 397593-web-01 35.153.226.233 check port 80
-	server 397593-web-02 34.207.64.221 check port 80
-	option httpchk
-	option httpclose
+	server web-01 100.26.173.80:80 check
+	server web-02 100.25.193.241:80 check
 " >> sudo /etc/haproxy/haproxy.cfg
 
 sudo service haproxy start
