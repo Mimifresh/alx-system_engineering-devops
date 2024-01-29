@@ -17,5 +17,8 @@ backend myservers
 	server web-01 100.26.173.80:80 check
 	server web-02 100.25.193.241:80 check
 " >> sudo /etc/haproxy/haproxy.cfg
-
+sudo echo "
+ubuntu 100.26.173.80 397593-web-01
+ubuntu 100.25.193.241 397593-web-02
+" >> sudo /etc/hosts
 sudo service haproxy start
